@@ -111,7 +111,7 @@ public abstract class LibraryItem implements Searchable{
             location = "Check our digital catalogue on one of our computers.";
         }
         else{
-            location = "You can find it in the " + section + " on the shelf " + shelf;
+            location = "You can find it in the " + section + " section on the shelf " + shelf;
         }
         return location;
     }

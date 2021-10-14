@@ -1,9 +1,6 @@
 package com.softwareinstitute.andreeaholban;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -43,6 +40,9 @@ public class Main {
                             if(toRegister.equals("yes")){
                                 visitor = register(members);
                             }
+                            else{
+                                break;
+                            }
 
                         }
                     }
@@ -64,6 +64,8 @@ public class Main {
                             itemsFound = visitor.search(items, "", "", section);
                             for (LibraryItem item : itemsFound) {
                                 System.out.println(item.getTitle() + " " + item.getAuthor() + " ISBN: "+ item.getISBN());
+                                System.out.println(item.findLocation());
+                                System.out.println();
                             }
                             if(itemsFound.isEmpty()){
                                 System.out.println("No items were found");
@@ -79,6 +81,8 @@ public class Main {
                             itemsFound = visitor.search(items, titleBook, authorBook, "");
                             for (LibraryItem item : itemsFound) {
                                 System.out.println(item.getTitle() + " " + item.getAuthor() + " ISBN: " + item.getISBN());
+                                System.out.println(item.findLocation());
+                                System.out.println();
                             }
                             if(itemsFound.isEmpty()){
                                 System.out.println("No items were found");
@@ -101,14 +105,17 @@ public class Main {
                                     isbn = input.nextLine();
                                 }
                             }
+
                             String result = visitor.borrow(itemToBorrow);
                             System.out.println(result);
                             if(result.equals("Item can't be borrowed")){
                                 System.out.println("Do you want to read it in the library? (yes/no)");
                                 String readInLibrary = input.nextLine();
-                                if(readInLibrary.equals("yes")) visitor.readingInLibrary(itemToBorrow);
-                                System.out.println("Please type \"done\" when you're finished");
-                                String done = input.nextLine();
+                                if(readInLibrary.equals("yes")) {
+                                    visitor.readingInLibrary(itemToBorrow);
+                                    System.out.println("Please type \"done\" when you're finished");
+                                    String done = input.nextLine();
+                                }
                             }
                         }
 
@@ -123,6 +130,22 @@ public class Main {
                     break;
 
                 case "add book":
+                    System.out.println("What is it? (book/document/magazine)");
+                    String itemToAdd = input.nextLine();
+                    System.out.println("What is the title of the book?");
+                    String titleBook = input.nextLine();
+                    System.out.println("What is the author's name?");
+                    String authorBook = input.nextLine();
+                    //get publication date here
+                    System.out.println("What format is it in? (physical/digital/audio)");
+                    String formatBook = input.nextLine();
+                    System.out.println("What genre is it?");
+                    String genreBook = input.nextLine();
+                    addBook(items, itemToAdd, titleBook, authorBook, formatBook, genreBook);
+
+                    for(LibraryItem item : items){
+                        System.out.println(item.getTitle() + "; format: " + item.getFormat() + "; copies: " + item.getCopiesAvailable());
+                    }
                     break;
 
                 case "leave":
@@ -185,7 +208,23 @@ public class Main {
         items.add(book);
     }
 
-    public static void addBook(List<LibraryItem> items){
-
+    public static void addBook(List<LibraryItem> items, String itemToAdd, String title, String author, String format, String section){
+        int itemAlreadyExists=0;
+        LibraryItem newItem = null;
+        for(LibraryItem item : items){
+            if(item.getTitle().equals(title) && item.getAuthor().equals(author) && item.getFormat().equals(format)){
+                item.setCopiesAvailable(item.getCopiesAvailable()+1);
+                itemAlreadyExists=1;
+            }
+        }
+        if(itemAlreadyExists == 0){
+            if(itemToAdd.equals("book")) {
+                newItem = new Book(title, author, null, generateID(), Boolean.TRUE, format, section, 1, 1, generateID(), "available");
+                items.add(newItem);
+            }
+            else{
+                System.out.println("I haven't done this type yet. Only book works :(");
+            }
+        }
     }
 }
