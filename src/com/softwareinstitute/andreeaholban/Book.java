@@ -10,7 +10,7 @@ public class Book extends LibraryItem implements Searchable{
     ////////////////////////////////////////////Constructors////////////////////////////////////////////////////////////
 
     public Book(String title, String author, Boolean isBorrowable, String status){
-        this(title, author, null, "" , isBorrowable, "Physical", "unknown", 1, 5, "", status);
+        this(title, author, null, "" , isBorrowable, "physical", "unknown", 1, 5, "", status);
     }
 
     public Book(String title, String author, LocalDate publicationDate, String ISBN, Boolean isBorrowable, String format, String section, int shelf, int copiesAvailable, String refNumber, String status){

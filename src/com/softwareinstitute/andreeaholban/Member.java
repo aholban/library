@@ -33,7 +33,7 @@ public class Member implements Searchable{
         String result = "";
         if(book.getBorrowable()){
             if(this.numberBooksBorrowed<5 && book.getCopiesAvailable()>0){
-                if(!book.getFormat().equals("Digital")) {
+                if(!book.getFormat().equals("digital")) {
                     book.setCopiesAvailable(book.getCopiesAvailable() - 1);
                 }
                 this.numberBooksBorrowed = numberBooksBorrowed +1;

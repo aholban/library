@@ -48,9 +48,11 @@ public class Main {
                     }
                     Book book = new Book("Harry Potter", "JK Rowling", Boolean.TRUE, "available");
 
-                    LibraryItem book2 = visitor.search(items, "Mistborn");
+                    List<LibraryItem> book2 = visitor.search(items, "", "", "Fantasy");
 
-                    System.out.println(book2.getTitle());
+                    for(LibraryItem item : book2){
+                        System.out.println(item.getTitle()+" "+ item.getAuthor());
+                    }
                     break;
 
                 case "add book":
@@ -110,7 +112,9 @@ public class Main {
     }
 
     public static void setupCollection(List<LibraryItem> items){
-        LibraryItem book = new Book("Mistborn", "Brandon Sanderson", null, generateID(), Boolean.TRUE, "Physical", "Fantasy", 1, 5, generateID(), "available");
+        LibraryItem book = new Book("Mistborn", "Brandon Sanderson", null, generateID(), Boolean.TRUE, "physical", "Fantasy", 1, 5, generateID(), "available");
+        items.add(book);
+        book = new Book("Harry Potter", "JK Rowling", null, generateID(), Boolean.TRUE, "physical", "Fantasy", 1, 5, generateID(), "available");
         items.add(book);
     }
 
