@@ -18,7 +18,7 @@ public class Main {
         while(terminate==0){
 
             System.out.println("Welcome to the Library! What do you want to do?");
-            System.out.println("Type \"visitor\" if there is a visitor");
+            System.out.println("Type \"visitor\" if you are here as a visitor");
             System.out.println("Type \"add book\" if you want to add a book to the collection");
             System.out.println("Type \"leave\" if you wish to leave");
             String command = input.nextLine();
@@ -31,7 +31,7 @@ public class Main {
                         visitor = register(members);
 
                     }
-                    else {
+                    else if(isNew.equals("no")){
                         System.out.println("What is your full name?");
                         String name = input.nextLine();
                         System.out.println("What is your card ID?");
@@ -46,13 +46,48 @@ public class Main {
 
                         }
                     }
-                    Book book = new Book("Harry Potter", "JK Rowling", Boolean.TRUE, "available");
-
-                    List<LibraryItem> book2 = visitor.search(items, "", "", "Fantasy");
-
-                    for(LibraryItem item : book2){
-                        System.out.println(item.getTitle()+" "+ item.getAuthor());
+                    else{
+                        System.out.println("Incorrect input");
+                        break;
                     }
+
+                    int browsing =1;
+                    do {
+                        System.out.println("Do you wish to browse a section or are you looking for a specific item?");
+                        System.out.println("Type \"section\" to view the genres available or \"item\" to look for a book.");
+                        String toSearch = input.nextLine();
+                        if (toSearch.equals("section")) {
+                            System.out.println("Please choose from the following genres:");
+                            System.out.println("Fantasy");
+                            String section = input.nextLine();
+                            List<LibraryItem> selection = visitor.search(items, "", "", section);
+                            for (LibraryItem item : selection) {
+                                System.out.println(item.getTitle() + " " + item.getAuthor() + " "+ item.getISBN());
+                            }
+                            if(selection.isEmpty()){
+                                System.out.println("No items were found");
+                            }
+                        } else if (toSearch.equals("item")){
+                            System.out.println("What is the title of the book? (First letter should be uppercase)");
+                            System.out.println("Type \"unknown\" if you don't know");
+                            String titleBook= input.nextLine();
+                            if(titleBook.equals("unknown")) titleBook="";
+                            System.out.println("Who is the author of the book? (Type \"unknown\" if you don't know)");
+                            String authorBook = input.nextLine();
+                            if(authorBook.equals("unknown")) authorBook="";
+                            List<LibraryItem> itemsFound = visitor.search(items, titleBook, authorBook, "");
+                            for (LibraryItem item : itemsFound) {
+                                System.out.println(item.getTitle() + " " + item.getAuthor() + " " + item.getISBN());
+                            }
+                            if(itemsFound.isEmpty()){
+                                System.out.println("No items were found");
+                            }
+                        }
+                        browsing = 0;
+
+                    }while(browsing == 1);
+
+
                     break;
 
                 case "add book":
