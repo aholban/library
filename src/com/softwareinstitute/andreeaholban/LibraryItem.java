@@ -2,7 +2,7 @@ package com.softwareinstitute.andreeaholban;
 
 import java.time.LocalDate;
 
-public abstract class LibraryItem {
+public abstract class LibraryItem implements Searchable{
 
     ///////////////////////////////////////Attributes//////////////////////////////////////////////////
 
@@ -14,9 +14,21 @@ public abstract class LibraryItem {
     private String format;
     private String section;
     private int shelf;
+    private int copiesAvailable;
 
     ///////////////////////////////////////Constraints////////////////////////////////////////////////
 
+    public LibraryItem(String title, String author, LocalDate publicationDate, double ISBN, Boolean isBorrowable, String format, String section, int shelf, int copiesAvailable){
+        this.title = title;
+        //this.author = author;
+        //this.publicationDate = publicationDate;
+        //this.ISBN = ISBN;
+        //this.isBorrowable = isBorrowable;
+        //this.format = format;
+        //this.section = section;
+        //this.shelf = shelf;
+        //this.copiesAvailable = copiesAvailable;
+    }
 
     ///////////////////////////////////////Methods///////////////////////////////////////////////////
 

@@ -2,7 +2,7 @@ package com.softwareinstitute.andreeaholban;
 
 import java.time.LocalDate;
 
-public class Member {
+public class Member implements Searchable{
     ////////////////////////////////////////////Attributes/////////////////////////////////////////////////////
 
     private String name;
@@ -15,7 +15,9 @@ public class Member {
 
     ////////////////////////////////////////////Methods///////////////////////////////////////////////////////
 
-
+    public void borrow(LibraryItem book){
+        System.out.println("Borrowing a book");
+    }
 
     public String getName() {
         return name;
