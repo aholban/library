@@ -81,6 +81,30 @@ public abstract class LibraryItem implements Searchable{
         this.format = format;
     }
 
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public int getShelf() {
+        return shelf;
+    }
+
+    public void setShelf(int shelf) {
+        this.shelf = shelf;
+    }
+
+    public int getCopiesAvailable() {
+        return copiesAvailable;
+    }
+
+    public void setCopiesAvailable(int copiesAvailable) {
+        this.copiesAvailable = copiesAvailable;
+    }
+
     public String findLocation(){
         String location = "";
         if(format.equals("Digital")){

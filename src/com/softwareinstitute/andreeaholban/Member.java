@@ -18,7 +18,17 @@ public class Member implements Searchable{
     public String borrow(LibraryItem book){
         String result = "";
         if(book.getBorrowable()){
-            result = "Succesfully borrowed";
+            if(this.numberBooksBorrowed<5 && book.getCopiesAvailable()>0){
+                result = "Succesfully borrowed";
+            }
+            else if (this.numberBooksBorrowed>=5){
+                result = "You have reached the maximum amount of books you can borrow at once";
+
+            }
+            else if(book.getCopiesAvailable()==0){
+                result = "No copies of this item are currently available";
+            }
+
         }
         else{
             result = "Item can't be borrowed";
