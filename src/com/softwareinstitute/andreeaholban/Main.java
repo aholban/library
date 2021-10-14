@@ -115,6 +115,7 @@ public class Main {
                                     visitor.readingInLibrary(itemToBorrow);
                                     System.out.println("Please type \"done\" when you're finished");
                                     String done = input.nextLine();
+                                    visitor.finishedReading(itemToBorrow);
                                 }
                             }
                         }
