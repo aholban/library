@@ -1,28 +1,33 @@
 package com.softwareinstitute.andreeaholban;
 
 import java.time.LocalDate;
+import java.util.UUID;
+
 
 public class Member implements Searchable{
     ////////////////////////////////////////////Attributes/////////////////////////////////////////////////////
 
     private String name;
-    private double cardNumber;
+    private String cardID;
     private LocalDate issuedDate;
     private int numberBooksBorrowed;
 
     ////////////////////////////////////////////Constructors//////////////////////////////////////////////////
 
-    public Member(String name){
-        this(name, 0, LocalDate.now(), 0);
+    public Member(String name, String id){
+        this(name,id, LocalDate.now(), 0);
     }
-    public Member(String name, double cardNumber, LocalDate issuedDate, int numberBooksBorrowed){
+    public Member(String name, String cardID, LocalDate issuedDate, int numberBooksBorrowed){
         this.name = name;
-        this.cardNumber = cardNumber;
+        this.cardID = cardID;
         this.issuedDate = issuedDate;
         this.numberBooksBorrowed = numberBooksBorrowed;
     }
 
     ////////////////////////////////////////////Methods///////////////////////////////////////////////////////
+
+
+
 
     public String borrow(LibraryItem book){
         String result = "";
@@ -31,7 +36,7 @@ public class Member implements Searchable{
                 if(!book.getFormat().equals("Digital")) {
                     book.setCopiesAvailable(book.getCopiesAvailable() - 1);
                 }
-                result = "Succesfully borrowed";
+                result = "Successfully borrowed";
             }
             else if (this.numberBooksBorrowed>=5){
                 result = "You have reached the maximum amount of books you can borrow at once";
@@ -56,12 +61,12 @@ public class Member implements Searchable{
         this.name = name;
     }
 
-    public double getCardNumber() {
-        return cardNumber;
+    public String getCardID() {
+        return cardID;
     }
 
-    public void setCardNumber(double cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCardNumber(String cardID) {
+        this.cardID = cardID;
     }
 
     public LocalDate getIssuedDate() {
