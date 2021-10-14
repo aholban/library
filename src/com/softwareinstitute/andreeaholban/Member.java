@@ -36,6 +36,7 @@ public class Member implements Searchable{
                 if(!book.getFormat().equals("Digital")) {
                     book.setCopiesAvailable(book.getCopiesAvailable() - 1);
                 }
+                this.numberBooksBorrowed = numberBooksBorrowed +1;
                 result = "Successfully borrowed";
             }
             else if (this.numberBooksBorrowed>=5){

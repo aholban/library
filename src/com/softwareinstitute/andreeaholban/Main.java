@@ -12,34 +12,55 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         List<Member> members = new ArrayList<Member>();
+        List<LibraryItem> items = new ArrayList<LibraryItem>();
         int terminate =0;
         while(terminate==0){
-            System.out.println("Hello! Are you new here? (yes/no)");
-            String isNew = input.nextLine();
-            if (isNew.equals("yes")) {
-                Member visitor = register(members);
 
-            } else {
-                System.out.println("What is your full name?");
-                String name = input.nextLine();
-                System.out.println("What is your card ID?");
-                String id = input.nextLine();
-                Member visitor = findMember(members, name, id);
-                if (visitor == null) {
-                    System.out.println("It seems you are not in our record. Do you wish to register? (yes/no)");
-                    String toRegister = input.nextLine();
-                    if(toRegister.equals("yes")){
+            System.out.println("What do you want to do?");
+            System.out.println("Type \"visitor\" if there is a visitor");
+            System.out.println("Type \"add book\" if you want to add book to collection");
+            System.out.println("Type \"terminate\" if you wish to end the process");
+            String command = input.nextLine();
+            switch (command){
+                case "visitor":
+                    Member visitor;
+                    System.out.println("Hello! Are you new here? (yes/no)");
+                    String isNew = input.nextLine();
+                    if (isNew.equals("yes")) {
                         visitor = register(members);
+
                     }
+                    else {
+                        System.out.println("What is your full name?");
+                        String name = input.nextLine();
+                        System.out.println("What is your card ID?");
+                        String id = input.nextLine();
+                        visitor = findMember(members, name, id);
+                        if (visitor == null) {
+                            System.out.println("It seems you are not in our record. Do you wish to register? (yes/no)");
+                            String toRegister = input.nextLine();
+                            if(toRegister.equals("yes")){
+                                visitor = register(members);
+                            }
 
-                }
+                        }
+                    }
+                    Book book = new Book("Harry Potter", "JK Rowling", Boolean.TRUE, "available");
+                    System.out.println(visitor.borrow(book));
+                    break;
+
+                case "add book":
+                    break;
+
+                case "terminate":
+                    terminate = 1;
+                    break;
+
             }
-
-            terminate = 1;
 
         }
 
-        Book book = new Book("Harry Potter", "JK Rowling", Boolean.TRUE, "available");
+
 
 
     }
