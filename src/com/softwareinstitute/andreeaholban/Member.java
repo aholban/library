@@ -54,6 +54,16 @@ public class Member implements Searchable{
         return result;
     }
 
+    public void readingInLibrary(LibraryItem book){
+        book.setCopiesAvailable(book.getCopiesAvailable() - 1);
+        System.out.println("You are reading " + book.getTitle() + " in the library.");
+    }
+
+    public void finishedReading(LibraryItem book){
+        book.setCopiesAvailable(book.getCopiesAvailable() + 1);
+        System.out.println("Finished reading " + book.getTitle() );
+    }
+
     public String getName() {
         return name;
     }

@@ -92,11 +92,24 @@ public class Main {
                             System.out.println("Please type the ISBN of the item");
                             String isbn = input.nextLine();
                             LibraryItem itemToBorrow = null;
-                            for( LibraryItem item : itemsFound){
-                                if(item.getISBN().equals(isbn)) itemToBorrow = item;
+                            while(itemToBorrow == null) {
+                                for (LibraryItem item : itemsFound) {
+                                    if (item.getISBN().equals(isbn)) itemToBorrow = item;
+                                }
+                                if(itemToBorrow == null){
+                                    System.out.println("Wrong ISBN. Please type it again.");
+                                    isbn = input.nextLine();
+                                }
                             }
                             String result = visitor.borrow(itemToBorrow);
                             System.out.println(result);
+                            if(result.equals("Item can't be borrowed")){
+                                System.out.println("Do you want to read it in the library? (yes/no)");
+                                String readInLibrary = input.nextLine();
+                                if(readInLibrary.equals("yes")) visitor.readingInLibrary(itemToBorrow);
+                                System.out.println("Please type \"done\" when you're finished");
+                                String done = input.nextLine();
+                            }
                         }
 
 
@@ -168,7 +181,7 @@ public class Main {
     public static void setupCollection(List<LibraryItem> items){
         LibraryItem book = new Book("Mistborn", "Brandon Sanderson", null, generateID(), Boolean.TRUE, "physical", "Fantasy", 1, 5, generateID(), "available");
         items.add(book);
-        book = new Book("Harry Potter", "JK Rowling", null, generateID(), Boolean.TRUE, "physical", "Fantasy", 1, 5, generateID(), "available");
+        book = new Book("Harry Potter", "JK Rowling", null, generateID(), Boolean.FALSE, "physical", "Fantasy", 1, 5, generateID(), "available");
         items.add(book);
     }
 
