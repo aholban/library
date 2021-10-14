@@ -15,8 +15,15 @@ public class Member implements Searchable{
 
     ////////////////////////////////////////////Methods///////////////////////////////////////////////////////
 
-    public void borrow(LibraryItem book){
-        System.out.println("Borrowing a book");
+    public String borrow(LibraryItem book){
+        String result = "";
+        if(book.getBorrowable()){
+            result = "Succesfully borrowed";
+        }
+        else{
+            result = "Item can't be borrowed";
+        }
+        return result;
     }
 
     public String getName() {
