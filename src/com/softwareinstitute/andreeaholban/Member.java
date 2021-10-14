@@ -12,6 +12,15 @@ public class Member implements Searchable{
 
     ////////////////////////////////////////////Constructors//////////////////////////////////////////////////
 
+    public Member(String name){
+        this(name, 0, LocalDate.now(), 0);
+    }
+    public Member(String name, double cardNumber, LocalDate issuedDate, int numberBooksBorrowed){
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.issuedDate = issuedDate;
+        this.numberBooksBorrowed = numberBooksBorrowed;
+    }
 
     ////////////////////////////////////////////Methods///////////////////////////////////////////////////////
 
@@ -19,6 +28,9 @@ public class Member implements Searchable{
         String result = "";
         if(book.getBorrowable()){
             if(this.numberBooksBorrowed<5 && book.getCopiesAvailable()>0){
+                if(!book.getFormat().equals("Digital")) {
+                    book.setCopiesAvailable(book.getCopiesAvailable() - 1);
+                }
                 result = "Succesfully borrowed";
             }
             else if (this.numberBooksBorrowed>=5){

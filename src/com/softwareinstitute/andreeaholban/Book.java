@@ -10,7 +10,7 @@ public class Book extends LibraryItem{
     ////////////////////////////////////////////Constructors////////////////////////////////////////////////////////////
 
     public Book(String title, String author, Boolean isBorrowable, String status){
-        this(title, author, null, 80002 , isBorrowable, "Physical", "unknown", 1, 0, 1994, status);
+        this(title, author, null, 80002 , isBorrowable, "Physical", "unknown", 1, 5, 1994, status);
     }
 
     public Book(String title, String author, LocalDate publicationDate, double ISBN, Boolean isBorrowable, String format, String section, int shelf, int copiesAvailable, double refNumber, String status){

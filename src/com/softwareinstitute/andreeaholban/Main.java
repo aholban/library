@@ -6,8 +6,9 @@ public class Main {
 
         Book book = new Book("Harry Potter", "JK Rowling", Boolean.TRUE, "available");
         System.out.println(book.getTitle());
-
-        Member Henry = new Member();
+        System.out.println(book.getCopiesAvailable());
+        Member Henry = new Member("Henry");
         System.out.println(Henry.borrow(book));
+        System.out.println(book.getCopiesAvailable());
     }
 }
