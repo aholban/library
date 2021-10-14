@@ -9,7 +9,7 @@ public abstract class LibraryItem implements Searchable{
     private String title;
     private String author;
     private LocalDate publicationDate;
-    private double ISBN;
+    private String ISBN;
     private Boolean isBorrowable;
     private String format;
     private String section;
@@ -18,7 +18,7 @@ public abstract class LibraryItem implements Searchable{
 
     ///////////////////////////////////////Constraints////////////////////////////////////////////////
 
-    public LibraryItem(String title, String author, LocalDate publicationDate, double ISBN, Boolean isBorrowable, String format, String section, int shelf, int copiesAvailable){
+    public LibraryItem(String title, String author, LocalDate publicationDate, String ISBN, Boolean isBorrowable, String format, String section, int shelf, int copiesAvailable){
         this.title = title;
         this.author = author;
         this.publicationDate = publicationDate;
@@ -57,11 +57,11 @@ public abstract class LibraryItem implements Searchable{
         this.publicationDate = publicationDate;
     }
 
-    public double getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
-    public void setISBN(double ISBN) {
+    public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }
 

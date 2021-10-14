@@ -13,13 +13,14 @@ public class Main {
 
         List<Member> members = new ArrayList<Member>();
         List<LibraryItem> items = new ArrayList<LibraryItem>();
+        setupCollection(items);
         int terminate =0;
         while(terminate==0){
 
-            System.out.println("What do you want to do?");
+            System.out.println("Welcome to the Library! What do you want to do?");
             System.out.println("Type \"visitor\" if there is a visitor");
-            System.out.println("Type \"add book\" if you want to add book to collection");
-            System.out.println("Type \"terminate\" if you wish to end the process");
+            System.out.println("Type \"add book\" if you want to add a book to the collection");
+            System.out.println("Type \"leave\" if you wish to leave");
             String command = input.nextLine();
             switch (command){
                 case "visitor":
@@ -46,13 +47,16 @@ public class Main {
                         }
                     }
                     Book book = new Book("Harry Potter", "JK Rowling", Boolean.TRUE, "available");
-                    System.out.println(visitor.borrow(book));
+
+                    LibraryItem book2 = visitor.search(items, "Mistborn");
+
+                    System.out.println(book2.getTitle());
                     break;
 
                 case "add book":
                     break;
 
-                case "terminate":
+                case "leave":
                     terminate = 1;
                     break;
 
@@ -103,5 +107,14 @@ public class Main {
         System.out.println("Card ID: " + visitor.getCardID());
 
         return visitor;
+    }
+
+    public static void setupCollection(List<LibraryItem> items){
+        LibraryItem book = new Book("Mistborn", "Brandon Sanderson", null, generateID(), Boolean.TRUE, "Physical", "Fantasy", 1, 5, generateID(), "available");
+        items.add(book);
+    }
+
+    public static void addBook(List<LibraryItem> items){
+
     }
 }
