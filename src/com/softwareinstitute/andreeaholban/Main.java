@@ -131,6 +131,7 @@ public class Main {
 
                 case "add book":
                     System.out.println("What is it? (book/document/magazine)");
+                    System.out.println("Only \"book\" works right now :(");
                     String itemToAdd = input.nextLine();
                     System.out.println("What is the title of the book?");
                     String titleBook = input.nextLine();
