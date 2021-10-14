@@ -56,15 +56,16 @@ public class Main {
                         System.out.println("Do you wish to browse a section or are you looking for a specific item?");
                         System.out.println("Type \"section\" to view the genres available or \"item\" to look for a book.");
                         String toSearch = input.nextLine();
+                        List<LibraryItem> itemsFound = new ArrayList<>();
                         if (toSearch.equals("section")) {
                             System.out.println("Please choose from the following genres:");
                             System.out.println("Fantasy");
                             String section = input.nextLine();
-                            List<LibraryItem> selection = visitor.search(items, "", "", section);
-                            for (LibraryItem item : selection) {
-                                System.out.println(item.getTitle() + " " + item.getAuthor() + " "+ item.getISBN());
+                            itemsFound = visitor.search(items, "", "", section);
+                            for (LibraryItem item : itemsFound) {
+                                System.out.println(item.getTitle() + " " + item.getAuthor() + " ISBN: "+ item.getISBN());
                             }
-                            if(selection.isEmpty()){
+                            if(itemsFound.isEmpty()){
                                 System.out.println("No items were found");
                             }
                         } else if (toSearch.equals("item")){
@@ -75,15 +76,33 @@ public class Main {
                             System.out.println("Who is the author of the book? (Type \"unknown\" if you don't know)");
                             String authorBook = input.nextLine();
                             if(authorBook.equals("unknown")) authorBook="";
-                            List<LibraryItem> itemsFound = visitor.search(items, titleBook, authorBook, "");
+                            itemsFound = visitor.search(items, titleBook, authorBook, "");
                             for (LibraryItem item : itemsFound) {
-                                System.out.println(item.getTitle() + " " + item.getAuthor() + " " + item.getISBN());
+                                System.out.println(item.getTitle() + " " + item.getAuthor() + " ISBN: " + item.getISBN());
                             }
                             if(itemsFound.isEmpty()){
                                 System.out.println("No items were found");
                             }
                         }
-                        browsing = 0;
+
+
+                        System.out.println("Do you wish to borrow one of the items you've seen? (yes/no)");
+                        String toBorrow = input.nextLine();
+                        if(toBorrow.equals("yes")){
+                            System.out.println("Please type the ISBN of the item");
+                            String isbn = input.nextLine();
+                            LibraryItem itemToBorrow = null;
+                            for( LibraryItem item : itemsFound){
+                                if(item.getISBN().equals(isbn)) itemToBorrow = item;
+                            }
+                            String result = visitor.borrow(itemToBorrow);
+                            System.out.println(result);
+                        }
+
+
+                        System.out.println("Do you wish to browse again? (yes/no)");
+                        String toBrowse = input.nextLine();
+                        if(!toBrowse.equals("yes")) browsing = 0;
 
                     }while(browsing == 1);
 
