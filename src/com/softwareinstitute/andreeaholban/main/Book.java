@@ -15,6 +15,10 @@ public class Book extends LibraryItem implements Searchable{
         this(title, author, null, "" , isBorrowable, "physical", "unknown", 1, 5, "", status);
     }
 
+    public Book(String title, String author, Boolean isBorrowable, String status, String refNumber){
+        this(title, author, null, "", isBorrowable, "physical", "unknown", 1, 5, refNumber, status);
+    }
+
     public Book(String title, String author, LocalDate publicationDate, String ISBN, Boolean isBorrowable, String format, String section, int shelf, int copiesAvailable, String refNumber, String status){
         super(title, publicationDate, ISBN, isBorrowable, format, section, shelf, copiesAvailable);
         this.author = author;
