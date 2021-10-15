@@ -75,7 +75,7 @@ public class Member implements Searchable{
         return cardID;
     }
 
-    public void setCardNumber(String cardID) {
+    public void setCardID(String cardID) {
         this.cardID = cardID;
     }
 
