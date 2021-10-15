@@ -1,7 +1,6 @@
-package com.softwareinstitute.andreeaholban;
+package com.softwareinstitute.andreeaholban.main;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 
 public class Member implements Searchable{
