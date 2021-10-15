@@ -2,7 +2,7 @@ package com.softwareinstitute.andreeaholban.main;
 
 import java.time.LocalDate;
 
-public class Book extends LibraryItem implements Searchable{
+public class Book extends LibraryItem{
     ////////////////////////////////////////////Attributes//////////////////////////////////////////////////////////////
 
     private String author;

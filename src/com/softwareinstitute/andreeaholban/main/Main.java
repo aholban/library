@@ -59,7 +59,17 @@ public class Main {
                         List<LibraryItem> itemsFound = new ArrayList<>();
                         if (toSearch.equals("section")) {
                             System.out.println("Please choose from the following genres:");
-                            System.out.println("Fantasy");
+                            List<String> genres = new ArrayList<>();
+                            for( LibraryItem item: items){
+                                String genre = item.getSection();
+                                if(!genres.contains(genre)){
+                                    genres.add(genre);
+                                }
+                            }
+                            for( String genre: genres){
+                                System.out.println(genre);
+                            }
+
                             String section = input.nextLine();
                             itemsFound = visitor.search(items, "", "", section);
                             for (LibraryItem item : itemsFound) {
@@ -131,8 +141,7 @@ public class Main {
                     break;
 
                 case "add book":
-                    System.out.println("What is it? (book/document/magazine)");
-                    System.out.println("Only \"book\" works right now :(");
+                    System.out.println("What is it? (book/document)");
                     String itemToAdd = input.nextLine();
                     System.out.println("What is the title of the book?");
                     String titleBook = input.nextLine();
@@ -224,8 +233,23 @@ public class Main {
                 newItem = new Book(title, author, null, generateID(), Boolean.TRUE, format, section, 1, 1, generateID(), "available");
                 items.add(newItem);
             }
-            else{
-                System.out.println("I haven't done this type yet. Only book works :(");
+            else if(itemToAdd.equals("document")){
+                List<String> references = new ArrayList<>();
+                Scanner input = new Scanner(System.in);
+                System.out.println("Do you want to add a reference? (yes/no)");
+                String addRef = input.nextLine();
+                while (addRef.equals("yes")){
+                    System.out.println("Please type in the reference");
+                    String ref = input.nextLine();
+                    references.add(ref);
+                    System.out.println("Do you want to add another reference? (yes/no)");
+                    addRef = input.nextLine();
+                }
+                newItem = new Document(title, author, null, generateID(), Boolean.TRUE, format, section, 1, 1, 0, references);
+                items.add(newItem);
+            }
+            else {
+                System.out.println("Can't recognize type");
             }
         }
     }
