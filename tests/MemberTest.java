@@ -1,5 +1,5 @@
-package com.softwareinstitute.andreeaholban.main;
-
+import com.softwareinstitute.andreeaholban.main.Book;
+import com.softwareinstitute.andreeaholban.main.Member;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

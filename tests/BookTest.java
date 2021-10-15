@@ -1,6 +1,3 @@
-package com.softwareinstitute.andreeaholban.main;
-
-
 import com.softwareinstitute.andreeaholban.main.Book;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,5 @@
-package com.softwareinstitute.andreeaholban.main;
-
-
+import com.softwareinstitute.andreeaholban.main.Book;
+import com.softwareinstitute.andreeaholban.main.Document;
 import org.junit.jupiter.api.Test;
 
 import javax.print.Doc;
