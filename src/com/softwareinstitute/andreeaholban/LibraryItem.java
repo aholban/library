@@ -7,7 +7,6 @@ public abstract class LibraryItem implements Searchable{
     ///////////////////////////////////////Attributes//////////////////////////////////////////////////
 
     private String title;
-    private String author;
     private LocalDate publicationDate;
     private String ISBN;
     private Boolean isBorrowable;
@@ -18,9 +17,8 @@ public abstract class LibraryItem implements Searchable{
 
     ///////////////////////////////////////Constraints////////////////////////////////////////////////
 
-    public LibraryItem(String title, String author, LocalDate publicationDate, String ISBN, Boolean isBorrowable, String format, String section, int shelf, int copiesAvailable){
+    public LibraryItem(String title, LocalDate publicationDate, String ISBN, Boolean isBorrowable, String format, String section, int shelf, int copiesAvailable){
         this.title = title;
-        this.author = author;
         this.publicationDate = publicationDate;
         this.ISBN = ISBN;
         this.isBorrowable = isBorrowable;
@@ -41,13 +39,6 @@ public abstract class LibraryItem implements Searchable{
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
 
     public LocalDate getPublicationDate() {
         return publicationDate;
@@ -104,6 +95,10 @@ public abstract class LibraryItem implements Searchable{
     public void setCopiesAvailable(int copiesAvailable) {
         this.copiesAvailable = copiesAvailable;
     }
+
+    public abstract String getAuthor();
+
+    public abstract void setAuthor(String author);
 
     public String findLocation(){
         String location = "";
